@@ -65,8 +65,4 @@ Unlike static quizzes, **SkillPilot** uses **Adaptive Probing**:
 -   **Surgical UI:** Code logic and UI are strictly separated by a clean interface.
 
 ---
-<<<<<<< Updated upstream
-*Built for the [Catalyst - Deccan AI] — Focused on Technical Integrity and User Centricity.*
-=======
-*Built for the Catalyst - Deccan AI Hackathon — Focused on Technical Integrity and User Centricity.*
->>>>>>> Stashed changes
+*Built for the [Catalyst - Deccan AI]

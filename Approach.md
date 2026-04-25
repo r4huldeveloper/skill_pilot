@@ -1,23 +1,15 @@
-<<<<<<< Updated upstream
 # Technical Write-up: SkillPilot
 
 ## 1. Approach
 Our approach centers on **Technical Rigor vs. UX Friction**. We believe that assessment shouldn't feel like an exam; it should feel like a conversation. We implemented a **"Sovereign Intelligence"** model where the AI is not just a chatbot, but an orchestrator. It makes real-time decisions on whether a candidate is "Strong" or needs "Probing," significantly reducing the number of questions for high-performing candidates while ensuring gaps are accurately identified for others.
-=======
-# Technical Approach: SkillPilot
 
-> **Created by Rahul Sharma for Catalyst - Deccan AI Hackathon**
->>>>>>> Stashed changes
-
-## 🌟 The Philosophy: Signals over Noise
+## The Philosophy: Signals over Noise
 Resumes are often "keyword-stuffed," making it hard to tell who is actually proficient. **SkillPilot** treats the assessment not as a static test, but as a dynamic conversation. Our approach balances **Technical Rigor** (is the candidate actually good?) with **User Experience** (is the process too long?).
 
 ---
-<<<<<<< Updated upstream
 *SkillPilot: Transforming how the world validates proficiency.*
-=======
 
-## 🏗️ Architecture: The "Sovereign" Model
+## Architecture: The "Sovereign" Model
 We built SkillPilot using a decoupled architecture. To understand it, think of the app as having three parts:
 
 ### 1. The Face (The UI Shell)
@@ -37,26 +29,26 @@ We built SkillPilot using a decoupled architecture. To understand it, think of t
 
 ---
 
-## 🧠 Key Technical Innovations
+## Key Technical Innovations
 
-### 🛡️ The "Sniff Test" (Adaptive Probing)
+### The "Sniff Test" (Adaptive Probing)
 Instead of asking 10 questions per skill, SkillPilot asks **one primary question**.
 - If you give a strong, technical answer, the Brain "fast-tracks" you to the next skill.
 - If the answer is vague, it triggers a **Probe**—a tougher follow-up to find the true limit of your knowledge.
 **Result:** 60% faster interviews for high-performers.
 
-### 🔌 The "Safety Fuse" (Circuit Breaker)
+### The "Safety Fuse" (Circuit Breaker)
 AI models can sometimes be slow or "rate-limited."
 - If the AI fails 3 times, the app "trips a fuse" (`CircuitBreaker.js`).
 - Instead of crashing, it shows a countdown and saves your progress locally.
 
-### 🔐 Privacy by Design (Local-First)
+### Privacy by Design (Local-First)
 - **Zero Backend:** Your resume is parsed on *your* computer using `PDF.js`.
 - Your data never touches our servers. It only goes to the AI provider (Groq) for the conversation itself.
 
 ---
 
-## 🚀 Production & Future Roadmap
+## Production & Future Roadmap
 
 ### Making it "Market Ready"
 1.  **Voice Mode:** Adding speech-to-text so users can "talk" to the interviewer.
@@ -68,4 +60,3 @@ We envision a world where "Years of Experience" matters less than "Demonstrated 
 
 ---
 *Built for the Catalyst - Deccan AI Hackathon — Engineering with Integrity.*
->>>>>>> Stashed changes
