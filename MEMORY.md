@@ -1,7 +1,9 @@
-# Project Memory: SkillScan AI
+# Project Memory: SkillPilot
+
+> **Created by Rahul Sharma for Catalyst - Deccan AI Hackathon**
 
 ## 🧠 System Context
-This document serves as the persistent memory for the SkillScan AI project. It defines the "Sovereign" architecture rules to ensure any future additions or deletions do not disrupt the core intelligence engine.
+This document serves as the persistent memory for the **SkillPilot** project. It defines the "Sovereign" architecture rules to ensure any future additions or deletions do not disrupt the core intelligence engine.
 
 ## 🏗️ Architectural Guardrails (Zero-Disruption Policy)
 1.  **Logic Isolation:** All business logic (Scoring, Agent Orchestration) MUST reside in `src/core/logic/`. No logic is permitted in `app.js` or `index.html`.

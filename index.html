@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- Created by Rahul Sharma for Catalyst - Deccan AI Hackathon -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkillScan AI — Conversational skill assessment agent. Real proficiency, not paper claims." />
+  <meta name="description" content="SkillPilot — Conversational skill assessment agent. Real proficiency, not paper claims." />
   <meta name="theme-color" content="#0a0a0f" />
-  <title>SkillScan AI — Real Proficiency, Not Paper Claims</title>
+  <title>SkillPilot — Real Proficiency, Not Paper Claims</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="offline-banner" id="offlineBanner" role="alert" aria-live="assertive">⚠️ You are offline. Reconnect to continue.</div>
+<div class="offline-banner" id="offlineBanner" role="alert" aria-live="assertive" style="display:none">⚠️ You are offline.</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="app">
 
   <header class="site-header">
-    <div class="logo-badge"><div class="logo-dot" aria-hidden="true"></div>SKILLSCAN AI — v3.1</div>
+    <div class="logo-badge"><div class="logo-dot" aria-hidden="true"></div>SKILLPILOT — v3.1</div>
     <h1 class="site-title">Resume claims are noise.<br>We find the signal.</h1>
     <p class="site-subtitle">Upload resume PDF. Our adaptive agent probes each skill, maps real gaps, and generates a personalised learning plan.</p>
   </header>
@@ -32,17 +33,16 @@
   </nav>
 
   <!-- SETUP -->
-  <section data-section="setup" class="active" aria-labelledby="h-setup">
-    <h2 id="h-setup" class="sr-only">Setup</h2>
+  <section data-section="setup" class="active">
     <div class="api-key-bar">
       <span style="font-size:13px;color:var(--text-dim);font-family:'DM Mono',monospace;">🔑 Groq Key</span>
-      <input type="password" id="apiKey" placeholder="gsk_..." autocomplete="off" oninput="App.checkKey()" />
+      <input type="password" id="apiKey" placeholder="gsk_..." oninput="App.checkKey()" />
       <span class="api-status api-status--missing" id="keyStatus">MISSING</span>
     </div>
 
     <div class="breaker-banner" id="breakerBanner">
       <span>⚡</span>
-      <div style="flex:1">AI rate-limited. Auto-retry in <span class="breaker-countdown" id="breakerCount">30</span>s</div>
+      <div style="flex:1">AI rate-limited. Auto-retry in <span id="breakerCount">30</span>s</div>
       <button class="btn btn--warn" onclick="CircuitBreaker.manualReset()">Retry Now</button>
     </div>
 
@@ -71,23 +71,29 @@
       </div>
     </div>
 
-    <div class="error-banner hidden" id="setupError"></div>
+    <div class="error-banner hidden" id="setupError" style="color:var(--danger);margin-bottom:12px"></div>
     <button class="btn btn--primary btn--full" id="startBtn" onclick="App.startAnalysis()">Analyse & Begin Assessment →</button>
   </section>
 
   <!-- ASSESS -->
-  <section data-section="assess" aria-labelledby="h-assess">
+  <section data-section="assess">
     <div class="card">
+      <div class="flex justify-between items-center mb-8">
+        <div class="card__title" style="margin-bottom:0">🎯 Assessment Progress</div>
+        <div class="text-dimmer" id="skillProgressLabel">0 / 0</div>
+      </div>
       <div id="skillChips" class="chip-list"></div>
-      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-track" id="progressTrack">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
     </div>
     <div class="chat-shell">
       <div class="chat-header">
         <div class="chat-avatar">🤖</div>
-        <div><div class="chat-agent-name">SkillScan Agent</div><div class="chat-agent-status" id="agentStatus">● Initialising...</div></div>
+        <div><div class="chat-agent-name">SkillPilot Agent</div><div class="chat-agent-status" id="agentStatus">● Initialising...</div></div>
       </div>
       <div class="chat-body" id="chatBody"></div>
-      <div class="chat-footer" id="chatFooter" style="display:none">
+      <div class="chat-footer hidden" id="chatFooter">
         <textarea id="userInput" placeholder="Type your answer..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();App.sendAnswer();}"></textarea>
         <button class="btn btn--primary" id="sendBtn" onclick="App.sendAnswer()">Send ↵</button>
       </div>
@@ -95,14 +101,14 @@
   </section>
 
   <!-- RESULTS -->
-  <section data-section="results" aria-labelledby="h-results">
+  <section data-section="results">
     <div class="summary-banner" id="summaryBanner"></div>
     <div class="results-grid" id="resultsGrid"></div>
     <button class="btn btn--teal btn--full" id="planBtn" onclick="App.generatePlan()">Generate Plan →</button>
   </section>
 
   <!-- PLAN -->
-  <section data-section="plan" aria-labelledby="h-plan">
+  <section data-section="plan">
     <div id="planContainer"></div>
     <button class="btn btn--secondary" onclick="location.reload()">← Restart</button>
   </section>

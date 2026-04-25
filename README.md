@@ -1,9 +1,11 @@
-# SkillScan AI — Real Proficiency, Not Paper Claims
+# SkillPilot — Real Proficiency, Not Paper Claims
+
+> **Created by Rahul Sharma for Catalyst - Deccan AI Hackathon**
 
 [![Sovereign Intelligence Protocol](https://img.shields.io/badge/Protocol-Sovereign--1.1-blueviolet)](GEMINI.md.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**SkillScan AI** is an autonomous, conversational agent designed to bridge the gap between "resume claims" and "real-world proficiency." By analyzing a Job Description and a candidate's resume, the agent probes each skill with adaptive, scenario-based questions to map real gaps and generate a personalized learning roadmap.
+**SkillPilot** is an autonomous, conversational agent designed to bridge the gap between "resume claims" and "real-world proficiency." By analyzing a Job Description and a candidate's resume, the agent probes each skill with adaptive, scenario-based questions to map real gaps and generate a personalized learning roadmap.
 
 ## 🚀 The Problem
 Resumes are noisy. Traditional ATS systems filter by keywords, but keywords don't equal competence. Hiring managers waste hours interviewing candidates who "look good on paper" but fail on practical application. Candidates, on the other hand, don't know exactly *what* they are missing to land their dream job.
@@ -38,7 +40,7 @@ graph TD
 -   **Security:** Local-first privacy. API keys and PII never touch a server (other than the inference provider).
 
 ## 🧠 Intelligence Core: Adaptive Probing
-Unlike static quizzes, SkillScan AI uses **Adaptive Probing**:
+Unlike static quizzes, **SkillPilot** uses **Adaptive Probing**:
 -   **Phase 1 (Opener):** Asks a high-level scenario question.
 -   **Phase 2 (Evaluation):** The Scoring Engine evaluates the answer's depth.
 -   **Phase 3 (The Fork):**
@@ -63,4 +65,8 @@ Unlike static quizzes, SkillScan AI uses **Adaptive Probing**:
 -   **Surgical UI:** Code logic and UI are strictly separated by a clean interface.
 
 ---
+<<<<<<< Updated upstream
 *Built for the [Catalyst - Deccan AI] — Focused on Technical Integrity and User Centricity.*
+=======
+*Built for the Catalyst - Deccan AI Hackathon — Focused on Technical Integrity and User Centricity.*
+>>>>>>> Stashed changes

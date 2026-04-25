@@ -1,3 +1,6 @@
+/**
+ * Created by Rahul Sharma for Catalyst - Deccan AI Hackathon
+ */
 'use strict';
 
 import { San } from '../utils/sanitize.js';
@@ -30,9 +33,9 @@ export const Prompts = {
   plan:
     `You are an elite career coach specialising in the Indian job market.\n` +
     `Return ONLY valid JSON:\n` +
-    `{"plan":[{"skill":"name","priority":"High","time_estimate":"3-4 weeks","why_it_matters":"job-specific 1 sentence","resources":[{"name":"Resource","type":"Free Course","url":"https://real-url.com","is_free":true}],"weekly_goal":"specific measurable milestone"}]}\n` +
-    `priority must be exactly High or Medium. url must be real https://. type must be: Free Course, Video, Practice, or Book.\n` +
-    `Use: YouTube, freeCodeCamp, Coursera (audit), Kaggle, HackerRank, GeeksforGeeks, NPTEL. Max 3 resources per skill.\n` +
+    `{"plan":[{"skill":"name","priority":"High","time_estimate":"3-4 weeks","why_it_matters":"job-specific 1 sentence","resources":[{"name":"Search Topic","type":"Video|Course|Practice","platform":"YouTube|MDN|freeCodeCamp|Coursera"}],"weekly_goal":"specific measurable milestone"}]}\n` +
+    `DO NOT generate direct URLs. Only provide high-quality Search Topics.\n` +
+    `Use these platforms: YouTube, freeCodeCamp, Coursera, MDN, Kaggle, HackerRank, GeeksforGeeks.\n` +
     `Indian context: reference Swiggy/Zomato/Razorpay use-cases where relevant. Realistic timelines for working professionals.`,
 
   parseSkills(raw) {
@@ -80,9 +83,8 @@ export const Prompts = {
       why_it_matters: San.text(String(item.why_it_matters || '')),
       resources: (item.resources || []).slice(0, 3).map(r => ({
         name: San.text(String(r.name || '')),
-        type: San.text(String(r.type || 'Free Course')),
-        url: (r.url && typeof r.url === 'string' && r.url.startsWith('https://')) ? r.url : null,
-        is_free: Boolean(r.is_free),
+        type: San.text(String(r.type || 'Course')),
+        platform: San.text(String(r.platform || 'YouTube')),
       })),
       weekly_goal: San.text(String(item.weekly_goal || '')),
     }));

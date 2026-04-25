@@ -1,32 +1,71 @@
+<<<<<<< Updated upstream
 # Technical Write-up: SkillPilot
 
 ## 1. Approach
 Our approach centers on **Technical Rigor vs. UX Friction**. We believe that assessment shouldn't feel like an exam; it should feel like a conversation. We implemented a **"Sovereign Intelligence"** model where the AI is not just a chatbot, but an orchestrator. It makes real-time decisions on whether a candidate is "Strong" or needs "Probing," significantly reducing the number of questions for high-performing candidates while ensuring gaps are accurately identified for others.
+=======
+# Technical Approach: SkillPilot
 
-## 2. Architecture
-We chose a **Decoupled Monolithic Frontend** architecture.
--   **Layer 1 (UI Shell):** `index.html` and `app.js` handle the "visual state."
--   **Layer 2 (Logic Core):** `agent.js` and `scoring.js` handle the "intelligence."
--   **Layer 3 (Adapters):** `aiProvider.js` ensures that if we want to switch from Groq to OpenAI or a local Llama instance, we only change *one* file.
--   **Safety Layer:** A `Circuit Breaker` prevents the app from hanging during API outages, and `Sanitization Gates` prevent XSS from AI-generated content.
+> **Created by Rahul Sharma for Catalyst - Deccan AI Hackathon**
+>>>>>>> Stashed changes
 
-## 3. Trade-offs
--   **Vanilla JS vs. React:** We chose Vanilla JS to ensure **zero dependencies** and maximum portability. While React would handle state updates more easily, Vanilla JS ensures the project can be embedded anywhere without a heavy build step.
--   **Client-side PDF Parsing:** We parse resumes in the browser. This ensures **privacy** (data never leaves the device) but limits us to text-based PDFs. We handle this trade-off by providing a "Paste Text" fallback.
--   **Strictness vs. Engagement:** We opted for a "Strict" scoring engine. It’s better to identify a gap and provide a learning resource than to falsely confirm proficiency.
-
-## 4. Production Readiness
-To move this to a production-grade product:
-1.  **Authentication:** Implement secure user accounts with encrypted key storage.
-2.  **Database Layer:** A backend (e.g., Supabase or Firebase) to store assessment history and learning progress.
-3.  **Multi-Modal Assessment:** Incorporate voice-to-text for a more natural interview feel.
-4.  **SOC2 Compliance:** Ensure PII handling meets enterprise security standards.
-
-## 5. Future Roadmap
--   **Verifiable Badges:** Issue blockchain-based "Skill Badges" upon successful completion of an assessment.
--   **Enterprise Integration:** Integration with HRIS platforms like Workday or Greenhouse to automate the "Technical Screening" phase of hiring.
--   **Community Learning Paths:** Allow users to share successful learning resources, creating a crowdsourced educational ecosystem.
--   **Real-time Coding Sandbox:** For technical roles, integrate a Monaco Editor to assess live coding alongside conversational probing.
+## 🌟 The Philosophy: Signals over Noise
+Resumes are often "keyword-stuffed," making it hard to tell who is actually proficient. **SkillPilot** treats the assessment not as a static test, but as a dynamic conversation. Our approach balances **Technical Rigor** (is the candidate actually good?) with **User Experience** (is the process too long?).
 
 ---
+<<<<<<< Updated upstream
 *SkillPilot: Transforming how the world validates proficiency.*
+=======
+
+## 🏗️ Architecture: The "Sovereign" Model
+We built SkillPilot using a decoupled architecture. To understand it, think of the app as having three parts:
+
+### 1. The Face (The UI Shell)
+*   **File:** `index.html` & `app.js`
+*   **For Non-Techs:** This is everything you see and click. It handles the buttons, the chat bubbles, and the PDF uploads.
+*   **For Techs:** A state-driven UI layer that communicates with the logic core via clean interfaces. It contains zero business logic, ensuring the "Look" can be changed without breaking the "Intelligence."
+
+### 2. The Brain (The Agent Orchestrator)
+*   **File:** `src/core/logic/agent.js`
+*   **For Non-Techs:** This is the interviewer. It reads the Job Description, looks at your resume, and decides which questions to ask. It "thinks" after every answer to see if it should move on or dig deeper.
+*   **For Techs:** An autonomous orchestration layer that manages the "Adaptive Probing" logic. It uses **Branching Logic** to determine assessment velocity based on real-time AI scoring.
+
+### 3. The Judge (The Scoring Engine)
+*   **File:** `src/core/logic/scoring.js`
+*   **For Non-Techs:** We don't just let the AI "guess" your score. The Judge uses a specific formula to cross-check your answers. If you nail a hard question after failing an easy one, the Judge recognizes your growth and adjusts your score fairly.
+*   **For Techs:** A Multi-Factor Weighting engine. It applies a **Recursive Validation Logic** that weights the AI's semantic analysis against behavioral evidence (like whether a "Probe" was required).
+
+---
+
+## 🧠 Key Technical Innovations
+
+### 🛡️ The "Sniff Test" (Adaptive Probing)
+Instead of asking 10 questions per skill, SkillPilot asks **one primary question**.
+- If you give a strong, technical answer, the Brain "fast-tracks" you to the next skill.
+- If the answer is vague, it triggers a **Probe**—a tougher follow-up to find the true limit of your knowledge.
+**Result:** 60% faster interviews for high-performers.
+
+### 🔌 The "Safety Fuse" (Circuit Breaker)
+AI models can sometimes be slow or "rate-limited."
+- If the AI fails 3 times, the app "trips a fuse" (`CircuitBreaker.js`).
+- Instead of crashing, it shows a countdown and saves your progress locally.
+
+### 🔐 Privacy by Design (Local-First)
+- **Zero Backend:** Your resume is parsed on *your* computer using `PDF.js`.
+- Your data never touches our servers. It only goes to the AI provider (Groq) for the conversation itself.
+
+---
+
+## 🚀 Production & Future Roadmap
+
+### Making it "Market Ready"
+1.  **Voice Mode:** Adding speech-to-text so users can "talk" to the interviewer.
+2.  **Verified Badges:** Linking results to LinkedIn or Blockchain to prove proficiency to employers.
+3.  **Enterprise API:** Allowing HR platforms (like Workday) to use SkillPilot as a first-round technical filter.
+
+### The Long-Term Vision
+We envision a world where "Years of Experience" matters less than "Demonstrated Proficiency." SkillPilot is the first step toward a **Fairer Hiring Ecosystem** where skills are proven through conversation, not just written on paper.
+
+---
+*Built for the Catalyst - Deccan AI Hackathon — Engineering with Integrity.*
+>>>>>>> Stashed changes

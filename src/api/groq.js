@@ -1,3 +1,6 @@
+/**
+ * Created by Rahul Sharma for Catalyst - Deccan AI Hackathon
+ */
 'use strict';
 
 import { CircuitBreaker } from './circuitBreaker.js';
@@ -12,7 +15,6 @@ const TIMEOUT_MS = 28000;
 export const GroqClient = {
   async call(apiKey, msgs, sys, json = false, maxTok = 700) {
     if (!apiKey) throw new Error('API key not set.');
-    if (!navigator.onLine) throw new Error('You are offline. Please reconnect.');
     if (!CircuitBreaker.canCall()) throw new Error('AI temporarily rate-limited.');
 
     const ctrl = new AbortController();

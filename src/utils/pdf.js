@@ -1,3 +1,6 @@
+/**
+ * Created by Rahul Sharma for Catalyst - Deccan AI Hackathon
+ */
 'use strict';
 
 import { San } from './sanitize.js';
