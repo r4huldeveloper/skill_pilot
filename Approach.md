@@ -1,6 +1,6 @@
-# Technical Write-up: SkillScan AI
+# Technical Write-up: SkillPilot
 
-## 1. Our Approach
+## 1. Approach
 Our approach centers on **Technical Rigor vs. UX Friction**. We believe that assessment shouldn't feel like an exam; it should feel like a conversation. We implemented a **"Sovereign Intelligence"** model where the AI is not just a chatbot, but an orchestrator. It makes real-time decisions on whether a candidate is "Strong" or needs "Probing," significantly reducing the number of questions for high-performing candidates while ensuring gaps are accurately identified for others.
 
 ## 2. Architecture
@@ -29,4 +29,4 @@ To move this to a production-grade product:
 -   **Real-time Coding Sandbox:** For technical roles, integrate a Monaco Editor to assess live coding alongside conversational probing.
 
 ---
-*SkillScan AI: Transforming how the world validates proficiency.*
+*SkillPilot: Transforming how the world validates proficiency.*
