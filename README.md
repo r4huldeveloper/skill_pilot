@@ -63,4 +63,4 @@ Unlike static quizzes, SkillScan AI uses **Adaptive Probing**:
 -   **Surgical UI:** Code logic and UI are strictly separated by a clean interface.
 
 ---
-*Built for the [Hackathon Name] — Focused on Technical Integrity and User Centricity.*
+*Built for the [Catalyst - Deccan AI] — Focused on Technical Integrity and User Centricity.*
