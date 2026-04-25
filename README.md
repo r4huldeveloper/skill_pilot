@@ -50,7 +50,7 @@ Unlike static quizzes, SkillScan AI uses **Adaptive Probing**:
 -   **Intelligence:** Groq Llama 3.3 (70B) for high-speed, high-reasoning inference.
 -   **Parsing:** PDF.js for client-side resume processing.
 -   **Logic:** Decoupled Javascript (ES6 Modules).
-
+-   **AI:** Claude, Gemini
 ## 🚦 Getting Started
 1.  **Obtain a Key:** Get a free Groq API key at [console.groq.com](https://console.groq.com).
 2.  **Open Index:** Open `index.html` in any modern browser.
