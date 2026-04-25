@@ -10,6 +10,7 @@ import { PDF } from './utils/pdf.js';
 import { Storage } from './utils/storage.js';
 import { CircuitBreaker } from './api/circuitBreaker.js';
 import { ResourceGuard } from './utils/resources.js';
+import { RunTests } from './tests.js';
 
 const DOM = {
   get: id => document.getElementById(id),
@@ -262,4 +263,5 @@ const App = {
 
 window.App = App;
 window.UI = UI;
+window.RunTests = RunTests;
 App.init();
