@@ -22,21 +22,22 @@ export const Prompts = {
 
   prelimScore:
     `Score the candidate's answer. Return ONLY valid JSON: {"score":3}\n` +
-    `Score 1-5: 1-2=cannot do job, 3=borderline, 4-5=competent. Be strict.`,
+    `Score 1-5: 1=does not know/refuses to answer/non-responsive, 2=wrong, 3=borderline, 4-5=competent.\n` +
+    `STRICT RULE: If the answer is "I don't know", "no", or any variation of admitting lack of knowledge, score MUST be 1.`,
 
   finalScore:
     `You are a senior hiring manager. Score each skill based ONLY on interview evidence.\n` +
     `Return ONLY valid JSON:\n{"scores":[{"skill":"name","score":3,"verdict":"Gap","note":"specific observation","questions_asked":2}]}\n` +
-    `verdict must be exactly: Gap, Partial, or Strong. score 1-2=Gap, 3=Partial, 4-5=Strong.\n` +
-    `Note must reference what was said (or not said). No generic comments.`,
+    `STRICT EVIDENCE RULE: If there is zero evidence of proficiency (e.g. they said "I don't know"), the score MUST be 1.\n` +
+    `Note must reference specific technical concepts mentioned. No generic praise.`,
 
   plan:
     `You are an elite career coach specialising in the Indian job market.\n` +
     `Return ONLY valid JSON:\n` +
-    `{"plan":[{"skill":"name","priority":"High","time_estimate":"3-4 weeks","why_it_matters":"job-specific 1 sentence","resources":[{"name":"Search Topic","type":"Video|Course|Practice","platform":"YouTube|MDN|freeCodeCamp|Coursera"}],"weekly_goal":"specific measurable milestone"}]}\n` +
-    `DO NOT generate direct URLs. Only provide high-quality Search Topics.\n` +
-    `Use these platforms: YouTube, freeCodeCamp, Coursera, MDN, Kaggle, HackerRank, GeeksforGeeks.\n` +
-    `Indian context: reference Swiggy/Zomato/Razorpay use-cases where relevant. Realistic timelines for working professionals.`,
+    `{"plan":[{"skill":"name","priority":"High","time_estimate":"14 Days / 25 Hours","focus_areas":["Topic 1","Topic 2"],"roadmap":[{"phase":"Phase 1","task":"Goal"}],"resources":[{"name":"Search Topic","type":"Video|Course|Practice","platform":"YouTube|MDN|freeCodeCamp|Coursera"}]}]}\n` +
+    `Timeline: Be precise (e.g., '12 Days', '4 Weeks'). Breakdown the roadmap into clear phases.\n` +
+    `Focus Areas: List 2-3 specific technical sub-topics to master.\n` +
+    `Indian context: Reference Swiggy/Zomato/Razorpay use-cases.`,
 
   parseSkills(raw) {
     const p = AIProvider.parseResponse(raw);
@@ -79,14 +80,17 @@ export const Prompts = {
     return arr.map(item => ({
       skill: San.text(String(item.skill || '')),
       priority: ['High', 'Medium'].includes(item.priority) ? item.priority : 'Medium',
-      time_estimate: San.text(String(item.time_estimate || '2-3 weeks')),
-      why_it_matters: San.text(String(item.why_it_matters || '')),
+      time_estimate: San.text(String(item.time_estimate || '14 Days')),
+      focus_areas: (item.focus_areas || []).map(f => San.text(f)),
+      roadmap: (item.roadmap || []).map(r => ({
+        phase: San.text(r.phase),
+        task: San.text(r.task)
+      })),
       resources: (item.resources || []).slice(0, 3).map(r => ({
         name: San.text(String(r.name || '')),
         type: San.text(String(r.type || 'Course')),
         platform: San.text(String(r.platform || 'YouTube')),
-      })),
-      weekly_goal: San.text(String(item.weekly_goal || '')),
+      }))
     }));
   },
 };

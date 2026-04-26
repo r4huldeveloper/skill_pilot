@@ -56,7 +56,14 @@ const UI = {
     const body = DOM.get('chatBody'); if (!body) return;
     const wrap = document.createElement('div'); wrap.className = `msg msg--${role === 'ai' ? 'ai' : 'user'}`;
     const bbl = document.createElement('div'); bbl.className = 'msg__bubble';
-    if (skillTag) { const t = document.createElement('div'); t.className = 'msg__skill-tag'; t.textContent = `● ${skillTag.toUpperCase()}`; bbl.appendChild(t); }
+    
+    if (skillTag || probeTag) { 
+      const t = document.createElement('div'); 
+      t.className = probeTag ? 'msg__probe-tag' : 'msg__skill-tag'; 
+      t.textContent = probeTag ? '⚠️ ADAPTIVE PROBE' : `● ${skillTag.toUpperCase()}`; 
+      bbl.appendChild(t); 
+    }
+
     const p = document.createElement('p'); p.textContent = text; bbl.appendChild(p);
     wrap.innerHTML = `<div class="msg__avatar msg__avatar--${role === 'ai' ? 'ai' : 'human'}">${role === 'ai' ? '🤖' : '👤'}</div>`;
     wrap.appendChild(bbl); body.appendChild(wrap); body.scrollTop = body.scrollHeight;
@@ -240,11 +247,31 @@ const App = {
     const c = DOM.get('planContainer'); c.innerHTML = '';
     plan.forEach(item => {
       const div = document.createElement('div'); div.className = 'plan-item';
+      
+      const focusHtml = item.focus_areas.length ? 
+        `<div class="plan-focus"><strong>Focus:</strong> ${item.focus_areas.map(f => `<span>${San.esc(f)}</span>`).join(', ')}</div>` : '';
+      
+      const roadmapHtml = `<div class="plan-roadmap">${item.roadmap.map(r => `
+        <div class="roadmap-step">
+          <div class="roadmap-phase">${San.esc(r.phase)}</div>
+          <div class="roadmap-task">${San.esc(r.task)}</div>
+        </div>`).join('')}</div>`;
+
       let rHtml = '<div class="resource-list">' + item.resources.map(r => {
         const platform = ResourceGuard.normalizePlatform(r.platform);
         return `<a href="${ResourceGuard.getLink(r.name, platform)}" target="_blank" class="resource-link"><span class="resource-type-badge rtype--free">${platform}</span><span>${San.esc(r.name)}</span></a>`;
       }).join('') + '</div>';
-      div.innerHTML = `<div class="plan-item__skill">${San.esc(item.skill)}</div><div class="plan-item__time">${San.esc(item.time_estimate)}</div><div style="font-size:13px;margin:8px 0">${San.esc(item.why_it_matters)}</div>${rHtml}`;
+
+      div.innerHTML = `
+        <div class="plan-item__header">
+          <div class="plan-item__skill">${San.esc(item.skill)}</div>
+          <div class="plan-item__time">⏱️ ${San.esc(item.time_estimate)}</div>
+        </div>
+        ${focusHtml}
+        ${roadmapHtml}
+        <div style="font-size:12px;color:var(--text-dim);margin:12px 0 8px">Top Learning Resources:</div>
+        ${rHtml}
+      `;
       c.appendChild(div);
     });
   },
