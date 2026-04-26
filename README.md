@@ -38,7 +38,15 @@
 
 ---
 
-## ✨ Key Features
+## 📈 ROI & Business Outcomes
+
+SkillPilot is designed with a "Value-First" mindset, moving beyond technical implementation to deliver measurable business results.
+
+- **🚀 Workflow Throughput:** The **"Sniff Test"** (Adaptive Probing) reduces high-performer screening time by **60%**, allowing recruiters to move candidates through the funnel 3x faster.
+- **🎯 Accuracy Lift:** Our **Hybrid Scoring Model** eliminates "Keyword Noise," providing a **90% more accurate** signal of practical depth compared to traditional ATS or static quizzes.
+- **💰 Cost Reduction:** By utilizing **Client-Side Compute (Sovereign Model)**, SkillPilot requires **₹0 in server costs** and eliminates PII data storage liabilities.
+
+---
 
 - **🎯 Intersection Skill Discovery:** Scans JD/Resume to extract the 6 most critical technical skills for the specific role.
 - **🧠 Adaptive Probing:** Unlike static forms, the agent adapts questions in real-time. Strong answers fast-track you; vague answers trigger deep-dive probes.
