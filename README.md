@@ -4,7 +4,6 @@
 
 [![Sovereign Intelligence Protocol](https://img.shields.io/badge/Protocol-Sovereign--1.0-blueviolet)](GEMINI.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node-22_LTS-green)](https://nodejs.org/)
 [![Privacy: Local-First](https://img.shields.io/badge/Privacy-Local--First-blue)](https://opensource.org/principles/)
 
 **SkillPilot** is an autonomous, conversational AI agent designed to bridge the gap between "resume noise" and "real-world proficiency." By analyzing a Job Description (JD) and a candidate's resume, the agent probes each skill with adaptive, scenario-based questions to map real gaps and generate a personalized, hallucination-free learning roadmap.
