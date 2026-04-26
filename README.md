@@ -112,6 +112,7 @@ Unlike basic chatbots, SkillPilot uses **Recursive Validation Logic**:
 
 - **Frontend:** Vanilla HTML5 / CSS3 (Syne, Instrument Sans & DM Mono fonts).
 - **Intelligence:** Groq Llama 3.3 (70B) — chosen for reasoning depth and speed.
+- **AI Agents:** Claude, Gemini, Groq.
 - **Utilities:** 
   - `PDF.js`: Client-side document parsing.
   - `ES6 Modules`: Native dependency management.
